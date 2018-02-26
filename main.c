@@ -107,10 +107,5 @@ int main() {
     init_uart();
 
     while (1) {
-        if (TCNT0 >= 0 && TCNT0 < 127) {
-            PORTC = 0x01;
-        } else {
-            PORTC = 0x00;
-        }
     }
 }
