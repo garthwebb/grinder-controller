@@ -1,0 +1,11 @@
+*.hex
+*.o
+*.eep
+*.lss
+*.sym
+*.elf
+*.lst
+cmake-build-debug
+*.map
+.dep
+.idea
