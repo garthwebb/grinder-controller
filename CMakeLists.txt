@@ -22,4 +22,4 @@ SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 add_executable(grinder_controller
         main.c
         main.h
-        Makefile)
+        Makefile state_machine.c state_machine.h motor.c motor.h switch.c switch.h serial.c serial.h timers.c timers.h)

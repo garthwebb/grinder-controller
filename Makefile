@@ -62,7 +62,7 @@ TARGET = main
 
 # List C source files here. (C dependencies are automatically generated.)
 #SRC = $(TARGET).c usiTwiSlave.c i2cCommands.c
-SRC = $(TARGET).c
+SRC = $(TARGET).c motor.c serial.c state_machine.c switch.c timers.c
 
 
 # List Assembler source files here.
@@ -395,7 +395,6 @@ ifeq ($(DEBUG_BACKEND), avarice)
 	@$(WINSHELL) /c start avarice --jtag $(JTAG_DEV) --erase --program --file \
 	$(TARGET).elf $(DEBUG_HOST):$(DEBUG_PORT)
 	@$(WINSHELL) /c pause
-	
 else
 	@$(WINSHELL) /c start simulavr --gdbserver --device $(MCU) --clock-freq \
 	$(DEBUG_MFREQ) --port $(DEBUG_PORT)
@@ -510,7 +509,7 @@ clean_list :
 
 
 # Listing of phony targets.
-.PHONY : all begin finish end sizebefore sizeafter gccversion \
+.PHONY : all begin end sizebefore sizeafter gccversion \
 build elf hex eep lss sym coff extcoff \
 clean clean_list program debug gdb-config
 
