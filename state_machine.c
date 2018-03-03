@@ -142,7 +142,7 @@ void handle_manual_run_starting() {
         transition_stopped();
     }
 
-    // Hold here in this (error) state until the user releases the manual run button
+    // Detect switch released
     if (!manual_run_switch_on()) {
         send("** Manual run switch released\n");
         transition_stopped();
@@ -158,9 +158,6 @@ void handle_manual_run() {
     // Detect manual switch not depressed
     if (!manual_run_switch_on()) {
         send("** Manual run switch released\n");
-
-        // Handle bounces from releasing this switch
-        debounce_manual_run_switch();
         transition_stopped();
         return;
     }
@@ -178,7 +175,9 @@ void handle_manual_run_clearing() {
         message_printed = true;
     }
 
-    // Hold here in this (error) state until the user releases the manual run button
+    // Hold here in this (error) state with the motor stopped until the user releases the manual run button.
+    // This makes sure we don't drop to the stopped state and start up again because the switch
+    // is still depressed.
     if (!manual_run_switch_on()) {
         send("** Manual run switch released\n");
         transition_stopped();
@@ -243,6 +242,7 @@ void transition_manual_run() {
 
 void transition_manual_run_clearing() {
     send("--> Transition to manual_run_clearing\n\n");
+    stop_motor();
     current_state = STATE_MANUAL_RUN_CLEARING;
     message_printed = false;
 }
