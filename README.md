@@ -1,6 +1,6 @@
 # grinder-controller
 
-This is an update to the coffee grinder project.  It makes use of the tachometer wires the laser printer motor has to detect when the motor is grinding coffee beans and when its free running.  The existing three position toggle switch (on-momentary, off, on-momentary) used to only make use of one of the on positions to turn on the motor as long as it was pressed.  Now pressing the switch in the other direction will activate an auto grind functionality.  When activated this will grind coffee until it detects there is no more coffee left to grind.
+A motor controller for the coffee grinder project.  It makes use of the tachometer wires from the motor to detect when the motor is grinding coffee beans vs when its free running.  A three position toggle switch (on-momentary, off, on-momentary) is used to control the grinder; toggling and releasing in one direction will start automatic grinding, where the motor will only turn off when it detects no more coffee is present.  Toggling in the other direction will grind until the toggle is released, then stop.
 
 This projet includes the following files and directories:
 
